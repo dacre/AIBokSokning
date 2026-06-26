@@ -3,6 +3,21 @@
   "historik": [
     {
       "datum": "2026-06",
+      "titel": "The Yiddish Policemen's Union",
+      "originaltitel": "The Yiddish Policemen's Union",
+      "forfattare": "Michael Chabon",
+      "isbn": "9780007149834",
+      "motivering": "Boken sitter i exakt samma korsning som förra månadens Miéville: en hårdkokt mordutredning (din deckartråd – Harris, Osman, Kestrel, Rudberg) inbäddad i smart, litterär spekulativ fiktion (Gibson, Stephenson, Liu Cixin, Murderbot). Premissen är alternativhistoria – staten Israel föll 1948 och judarna bosatte sig i en jiddischtalande metropol i Alaska – vilket plockar upp den starka alt-historietråd som ligger och väntar på din vill-läsa-hylla (all Turtledove, Harris Enigma). Chabon skriver med en prosakänsla och ett allvar som matchar dina litterära favoriter (Franzen, Krasznahorkai), samtidigt som han sträcker dig mot den prisade litterära mittfåran. Att romanen vann både Hugo, Nebula, Locus och Sidewise gör den till just den sortens ovanligt prisbelönta genrebrytare du verkar dras till.",
+      "taggar": ["alternativhistoria", "noir", "litterär scifi", "deckare", "prisbelönt", "genrebrytande"],
+      "format": "Häftad (engelsk originalutgåva)",
+      "pris": { "adlibris": "ca 158 kr (riktpris)", "bokus": "ca 159 kr (riktpris)" },
+      "lankar": {
+        "adlibris": "https://www.adlibris.com/se/bok/the-yiddish-policemens-union-9780007149834",
+        "bokus": "https://www.bokus.com/bok/9780007149834/the-yiddish-policemens-union/"
+      }
+    },
+    {
+      "datum": "2026-06",
       "titel": "Staden & staden",
       "originaltitel": "The City & the City",
       "forfattare": "China Miéville",
