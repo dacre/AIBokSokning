@@ -2,39 +2,60 @@
   "uppdaterad": "2026-06-26",
   "tillgangliga": [
     {
-      "titel": "Snow Crash",
-      "forfattare": "Neal Stephenson",
-      "isbn": "9780241953181",
-      "filialer": ["Stadsbiblioteket", "Björkhagen"],
-      "lank": "https://biblioteket.stockholm.se/sok?freetext=Snow%20Crash%20Stephenson"
+      "titel": "Den mörka skogen",
+      "forfattare": "Cixin Liu",
+      "isbn": "9189516249",
+      "filialer": ["Björkhagens bibliotek", "Bagarmossens bibliotek"],
+      "lank": "https://biblioteket.stockholm.se/titel/8471976"
     },
     {
-      "titel": "Agency",
-      "forfattare": "William Gibson",
-      "isbn": "9780241239094",
-      "filialer": ["Björkhagen"],
-      "lank": "https://biblioteket.stockholm.se/sok?freetext=Agency%20Gibson"
+      "titel": "I den första kretsen",
+      "forfattare": "Aleksandr Solzjenitsyn",
+      "isbn": "",
+      "filialer": ["Björkhagens bibliotek", "Tranströmerbiblioteket (Medborgarplatsen)"],
+      "lank": "https://biblioteket.stockholm.se/titel/8351549"
     },
     {
-      "titel": "Null States",
-      "forfattare": "Malka Older",
-      "isbn": "9780765393371",
-      "filialer": ["Medborgarplatsen"],
-      "lank": "https://biblioteket.stockholm.se/sok?freetext=Null%20States%20Older"
+      "titel": "Hibernaum",
+      "forfattare": "Sam Ghazi",
+      "isbn": "9113131575",
+      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)"],
+      "lank": "https://biblioteket.stockholm.se/titel/8458137"
     },
     {
-      "titel": "Children of Ruin",
-      "forfattare": "Adrian Tchaikovsky",
-      "isbn": "9781509865871",
-      "filialer": ["Medborgarplatsen", "Stadsbiblioteket"],
-      "lank": "https://biblioteket.stockholm.se/sok?freetext=Children%20of%20Ruin%20Tchaikovsky"
+      "titel": "Den vilda flykten",
+      "forfattare": "Lauren Groff",
+      "isbn": "9189820061",
+      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)"],
+      "lank": "https://biblioteket.stockholm.se/titel/8443468"
     },
     {
-      "titel": "Schismatrix Plus",
-      "forfattare": "Bruce Sterling",
-      "isbn": "9780441003709",
-      "filialer": ["Bagarmossen"],
-      "lank": "https://biblioteket.stockholm.se/sok?freetext=Schismatrix%20Sterling"
+      "titel": "Fri",
+      "forfattare": "Lea Ypi",
+      "isbn": "9100197459",
+      "filialer": ["Bagarmossens bibliotek"],
+      "lank": "https://biblioteket.stockholm.se/titel/8554289"
+    },
+    {
+      "titel": "En andra allians",
+      "forfattare": "Denise Rudberg",
+      "isbn": "9137152645",
+      "filialer": ["Bagarmossens bibliotek"],
+      "lank": "https://biblioteket.stockholm.se/titel/8462263"
+    },
+    {
+      "titel": "Landet utanför Sverige och kriget 1939-1940",
+      "forfattare": "Henrik Berggren",
+      "isbn": "9113039520",
+      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)", "Bagarmossens bibliotek", "Björkhagens bibliotek"],
+      "lank": "https://biblioteket.stockholm.se/titel/8555554"
+    },
+    {
+      "titel": "Europa",
+      "forfattare": "Maxim Grigoriev",
+      "isbn": "9100183962",
+      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)", "Björkhagens bibliotek", "Bagarmossens bibliotek"],
+      "lank": "https://biblioteket.stockholm.se/titel/8512711"
     }
   ]
 }
