@@ -5,71 +5,105 @@
       "titel": "Den mörka skogen",
       "forfattare": "Cixin Liu",
       "isbn": "9189516249",
-      "filialer": ["Björkhagens bibliotek", "Bagarmossens bibliotek"],
+      "filialer": [
+        "Björkhagens bibliotek",
+        "Bagarmossens bibliotek"
+      ],
       "lank": "https://biblioteket.stockholm.se/titel/8471976"
     },
     {
       "titel": "I den första kretsen",
       "forfattare": "Aleksandr Solzjenitsyn",
       "isbn": "",
-      "filialer": ["Björkhagens bibliotek", "Tranströmerbiblioteket (Medborgarplatsen)"],
+      "filialer": [
+        "Björkhagens bibliotek",
+        "Tranströmerbiblioteket (Medborgarplatsen)"
+      ],
       "lank": "https://biblioteket.stockholm.se/titel/8351549"
+    },
+    {
+      "titel": "Empire of the Ants",
+      "forfattare": null,
+      "isbn": "",
+      "filialer": [
+        "Tranströmerbiblioteket (Medborgarplatsen)"
+      ],
+      "lank": "https://biblioteket.stockholm.se/titel/8453156"
     },
     {
       "titel": "Hibernaum",
       "forfattare": "Sam Ghazi",
       "isbn": "9113131575",
-      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)"],
+      "filialer": [
+        "Tranströmerbiblioteket (Medborgarplatsen)"
+      ],
       "lank": "https://biblioteket.stockholm.se/titel/8458137"
     },
     {
       "titel": "Den vilda flykten",
       "forfattare": "Lauren Groff",
       "isbn": "9189820061",
-      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)"],
+      "filialer": [
+        "Tranströmerbiblioteket (Medborgarplatsen)"
+      ],
       "lank": "https://biblioteket.stockholm.se/titel/8443468"
     },
     {
       "titel": "Fri",
       "forfattare": "Lea Ypi",
       "isbn": "9100197459",
-      "filialer": ["Bagarmossens bibliotek"],
+      "filialer": [
+        "Bagarmossens bibliotek"
+      ],
       "lank": "https://biblioteket.stockholm.se/titel/8554289"
     },
     {
       "titel": "En andra allians",
       "forfattare": "Denise Rudberg",
       "isbn": "9137152645",
-      "filialer": ["Bagarmossens bibliotek"],
+      "filialer": [
+        "Bagarmossens bibliotek"
+      ],
       "lank": "https://biblioteket.stockholm.se/titel/8462263"
     },
     {
-      "titel": "Landet utanför Sverige och kriget 1939-1940",
-      "forfattare": "Henrik Berggren",
-      "isbn": "9113039520",
-      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)", "Bagarmossens bibliotek", "Björkhagens bibliotek"],
-      "lank": "https://biblioteket.stockholm.se/titel/8555554"
+      "titel": "Bleeding edge",
+      "forfattare": "Thomas Pynchon",
+      "isbn": "1594204233",
+      "filialer": [
+        "Björkhagens bibliotek",
+        "Tranströmerbiblioteket (Medborgarplatsen)"
+      ],
+      "lank": "https://biblioteket.stockholm.se/titel/8160159"
     },
     {
-      "titel": "Europa",
-      "forfattare": "Maxim Grigoriev",
-      "isbn": "9100183962",
-      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)", "Björkhagens bibliotek", "Bagarmossens bibliotek"],
-      "lank": "https://biblioteket.stockholm.se/titel/8512711"
+      "titel": "Gutenberggalaxens nova",
+      "forfattare": "Nina Burton",
+      "isbn": "9100158976",
+      "filialer": [
+        "Bagarmossens bibliotek",
+        "Björkhagens bibliotek"
+      ],
+      "lank": "https://biblioteket.stockholm.se/titel/8160723"
     },
     {
-      "titel": "Berättelsen är världens språk",
-      "forfattare": "Ursula K. Le Guin",
+      "titel": "Världens mått",
+      "forfattare": "Daniel Kehlmann",
+      "isbn": "9100119474",
+      "filialer": [
+        "Tranströmerbiblioteket (Medborgarplatsen)"
+      ],
+      "lank": "https://biblioteket.stockholm.se/titel/8232131"
+    },
+    {
+      "titel": "Profetens sång",
+      "forfattare": "Paul Lynch",
       "isbn": "",
-      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)"],
-      "lank": "https://biblioteket.stockholm.se/titel/8047477"
-    },
-    {
-      "titel": "Drömmen om det röda",
-      "forfattare": "Nina Björk",
-      "isbn": "9146230599",
-      "filialer": ["Bagarmossens bibliotek", "Tranströmerbiblioteket (Medborgarplatsen)"],
-      "lank": "https://biblioteket.stockholm.se/titel/8181208"
+      "filialer": [
+        "Björkhagens bibliotek",
+        "Bagarmossens bibliotek"
+      ],
+      "lank": "https://biblioteket.stockholm.se/titel/8464285"
     }
   ]
 }
