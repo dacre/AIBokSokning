@@ -1,4 +1,20 @@
 {
-  "uppdaterad": "",
-  "historik": []
+  "uppdaterad": "2026-06-26",
+  "historik": [
+    {
+      "datum": "2026-06",
+      "titel": "Staden & staden",
+      "originaltitel": "The City & the City",
+      "forfattare": "China Miéville",
+      "isbn": "9789188391063",
+      "motivering": "Du läser smart, litterär spekulativ fiktion (Gibson fick dina enda 5 stjärnor, plus Stephenson, KSR, Liu Cixin och Murderbot) och har samtidigt en stark tråd av deckare och politiska thrillers (Harris, Osman, Kestrel, Rudberg). Staden & staden ligger precis i skärningspunkten: en hårdkokt mordutredning i två gåtfullt överlappande städer, lika mycket Chandler som Kafka. Den sträcker din smak ett snäpp in i New Weird – en naturlig fortsättning från Swanwick på din vill-läsa-hylla – utan att lämna det litterära allvar du gillar. Att den vann både Hugo, World Fantasy och Arthur C. Clarke gör den till en ovanligt prisbelönt genrebrytare.",
+      "taggar": ["litterär scifi", "new weird", "deckare", "prisbelönt", "genrebrytande"],
+      "format": "Danskt band",
+      "pris": { "adlibris": "ca 199 kr (riktpris)", "bokus": "ca 199 kr (riktpris)" },
+      "lankar": {
+        "adlibris": "https://www.adlibris.com/se/bok/staden-och-staden-9789188391063",
+        "bokus": "https://www.bokus.com/bok/9789188391063/staden-staden/"
+      }
+    }
+  ]
 }
