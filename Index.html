@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Månadens bok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#181a2c; --paper:#fbfaf6; --panel:#ffffff; --text:#26262c;
+    --muted:#73727c; --faint:#9a99a2; --rule:#e8e4db;
+    --brass:#b0843f; --brass-soft:#f3ead7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:radial-gradient(1200px 500px at 50% -200px,#20233c 0%,var(--ink) 55%) no-repeat,var(--ink);
+    color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.5;
+    padding:34px 16px 60px;min-height:100vh;
+  }
+  .wrap{max-width:560px;margin:0 auto}
+  .pagehead{text-align:center;margin-bottom:18px}
+  .pagehead .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#b9bad0}
+  .pagehead h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:22px;color:#fff;margin-top:6px;letter-spacing:-.01em}
+
+  .rec{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:15px;padding:26px 26px 24px 32px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(8,9,22,.7)}
+  .rec::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(180deg,var(--brass),#caa55e)}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);margin-bottom:10px}
+  h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:31px;line-height:1.08;color:var(--ink);letter-spacing:-.015em}
+  .author{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:18px;color:var(--muted);margin-top:5px}
+  .why{font-size:15px;color:#3c3c44;margin-top:16px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .tag{font-size:11.5px;color:#75614a;background:var(--brass-soft);padding:4px 10px;border-radius:999px;font-weight:500}
+  .buy{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .btn{flex:1 1 auto;min-width:150px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;padding:14px 16px;border-radius:10px;font-size:14px;font-weight:600;transition:transform .12s ease,box-shadow .12s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn.primary:hover{box-shadow:0 8px 20px -8px rgba(24,26,44,.6)}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+  .btn .price{font-weight:500;opacity:.78;font-family:'JetBrains Mono',monospace;font-size:12.5px}
+  .fmt{font-size:12px;color:var(--muted);margin-top:14px;font-family:'JetBrains Mono',monospace}
+  .foot{text-align:center;margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9698b6}
+
+  .state{background:var(--panel);border:1px solid var(--rule);border-radius:15px;padding:30px 26px;text-align:center;color:var(--muted)}
+  .state h3{font-family:'Fraunces',Georgia,serif;color:var(--ink);font-weight:600;font-size:20px;margin-bottom:8px}
+  .state code{font-family:'JetBrains Mono',monospace;font-size:12px;background:#f0ede5;padding:2px 6px;border-radius:5px}
+  .spinner{width:26px;height:26px;border:3px solid var(--rule);border-top-color:var(--brass);border-radius:50%;margin:0 auto 14px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.spinner{animation:none}}
+
+  .hidden{display:none}
+  @media (max-width:520px){h2{font-size:26px}.btn{flex:1 1 100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pagehead">
+    <div class="eyebrow">Månadens boktips</div>
+    <h1>Vald utifrån din läshistorik</h1>
+  </div>
+
+  <!-- laddar -->
+  <div id="loading" class="state">
+    <div class="spinner"></div>
+    Hämtar månadens bok…
+  </div>
+
+  <!-- bok -->
+  <div id="card" class="rec hidden">
+    <div class="kicker" id="kicker">Månadens bok</div>
+    <h2 id="titel"></h2>
+    <div class="author" id="forfattare"></div>
+    <p class="why" id="motivering"></p>
+    <div class="tags" id="tags"></div>
+    <div class="buy" id="buy"></div>
+    <div class="fmt" id="fmt"></div>
+  </div>
+
+  <!-- fel / tomt -->
+  <div id="empty" class="state hidden">
+    <h3>Inget tips än</h3>
+    <div>Kunde inte läsa <code>history.json</code>. Kontrollera att filen finns på grenen <code>claude/boktips</code> och att den har körts minst en gång.</div>
+  </div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+  var MANADER = ["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december"];
+
+  function el(id){ return document.getElementById(id); }
+  function show(id){ el(id).classList.remove('hidden'); }
+  function hide(id){ el(id).classList.add('hidden'); }
+
+  function manadsnamn(datum){
+    // datum: "ÅÅÅÅ-MM"
+    if(!datum) return "";
+    var d = datum.split('-');
+    var m = parseInt(d[1],10);
+    if(m>=1 && m<=12) return MANADER[m-1] + " " + d[0];
+    return datum;
+  }
+
+  function render(bok, uppdaterad){
+    el('titel').textContent = bok.titel || "Okänd titel";
+    el('forfattare').textContent = bok.forfattare || "";
+    el('motivering').textContent = bok.motivering || "";
+    if(bok.datum){ el('kicker').textContent = "Månadens bok · " + manadsnamn(bok.datum); }
+
+    // taggar
+    var tagsBox = el('tags');
+    tagsBox.innerHTML = "";
+    (bok.taggar || []).forEach(function(t){
+      var s = document.createElement('span'); s.className='tag'; s.textContent=t; tagsBox.appendChild(s);
+    });
+
+    // köpknappar
+    var buy = el('buy'); buy.innerHTML = "";
+    var lankar = bok.lankar || {};
+    var pris = bok.pris || {};
+    function addBtn(namn, href, prisText, primary){
+      if(!href) return;
+      var a = document.createElement('a');
+      a.className = 'btn ' + (primary ? 'primary' : 'ghost');
+      a.href = href; a.target='_blank'; a.rel='noopener';
+      var l = document.createElement('span'); l.textContent = 'Köp på ' + namn;
+      var p = document.createElement('span'); p.className='price'; p.textContent = prisText || '';
+      a.appendChild(l); a.appendChild(p); buy.appendChild(a);
+    }
+    addBtn('Adlibris', lankar.adlibris, pris.adlibris, true);
+    addBtn('Bokus', lankar.bokus, pris.bokus, false);
+
+    // format / isbn
+    var bits = [];
+    if(bok.format) bits.push(bok.format);
+    if(bok.isbn) bits.push('ISBN ' + bok.isbn);
+    el('fmt').textContent = bits.join(' · ');
+
+    el('foot').textContent = uppdaterad ? ('Uppdaterad ' + uppdaterad) : '';
+
+    hide('loading'); show('card');
+  }
+
+  // Cache-bust så att en ny månad alltid syns, även om Pages/CDN cachar.
+  fetch('history.json?_=' + Date.now(), { cache: 'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+    .then(function(data){
+      var lista = (data && data.historik) || [];
+      if(lista.length === 0){ hide('loading'); show('empty'); return; }
+      render(lista[0], data.uppdaterad);
+    })
+    .catch(function(){ hide('loading'); show('empty'); });
+</script>
+</body>
+</html>
