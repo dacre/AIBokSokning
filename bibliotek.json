@@ -56,6 +56,20 @@
       "isbn": "9100183962",
       "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)", "Björkhagens bibliotek", "Bagarmossens bibliotek"],
       "lank": "https://biblioteket.stockholm.se/titel/8512711"
+    },
+    {
+      "titel": "Berättelsen är världens språk",
+      "forfattare": "Ursula K. Le Guin",
+      "isbn": "",
+      "filialer": ["Tranströmerbiblioteket (Medborgarplatsen)"],
+      "lank": "https://biblioteket.stockholm.se/titel/8047477"
+    },
+    {
+      "titel": "Drömmen om det röda",
+      "forfattare": "Nina Björk",
+      "isbn": "9146230599",
+      "filialer": ["Bagarmossens bibliotek", "Tranströmerbiblioteket (Medborgarplatsen)"],
+      "lank": "https://biblioteket.stockholm.se/titel/8181208"
     }
   ]
 }
