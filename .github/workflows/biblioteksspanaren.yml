@@ -1,0 +1,54 @@
+# Biblioteksspanaren – schemalagd sökning mot Stockholms stadsbibliotek
+#
+# SETUP (gör en gång):
+#   1. Gå till repo → Settings → Actions → General
+#   2. Under "Workflow permissions": välj "Read and write permissions"
+#   3. Klicka Save
+#
+# Kör därefter manuellt via: Actions → Biblioteksspanaren → Run workflow
+# Schemalagd körning sker automatiskt varje måndag kl 09:00 svensk tid.
+#
+# Data (cursor.json, bibliotek.json, scripts/) lever på grenen claude/boktips.
+
+name: Biblioteksspanaren
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # Måndag 07:00 UTC = 09:00 CEST / 08:00 CET
+  workflow_dispatch:        # Tillåt manuell körning från GitHub UI
+
+permissions:
+  contents: write           # Krävs för att committa och pusha tillbaka
+
+jobs:
+  spana:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checka ut grenen
+        uses: actions/checkout@v4
+        with:
+          ref: claude/boktips
+
+      - name: Sätt upp Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Konfigurera git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Kör biblioteksspanaren
+        run: python3 scripts/run_spanaren.py
+
+      - name: Committa och pusha resultat
+        run: |
+          git add bibliotek.json cursor.json
+          if git diff --staged --quiet; then
+            echo "Inga ändringar – ingenting att committa."
+          else
+            git commit -m "biblioteksspanaren: $(date -u +%Y-%m-%d)"
+            git push origin claude/boktips
+          fi
