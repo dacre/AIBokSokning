@@ -1,0 +1,40 @@
+{
+  "uppdaterad": "2026-06-26",
+  "tillgangliga": [
+    {
+      "titel": "Snow Crash",
+      "forfattare": "Neal Stephenson",
+      "isbn": "9780241953181",
+      "filialer": ["Stadsbiblioteket", "Björkhagen"],
+      "lank": "https://biblioteket.stockholm.se/sok?freetext=Snow%20Crash%20Stephenson"
+    },
+    {
+      "titel": "Agency",
+      "forfattare": "William Gibson",
+      "isbn": "9780241239094",
+      "filialer": ["Björkhagen"],
+      "lank": "https://biblioteket.stockholm.se/sok?freetext=Agency%20Gibson"
+    },
+    {
+      "titel": "Null States",
+      "forfattare": "Malka Older",
+      "isbn": "9780765393371",
+      "filialer": ["Medborgarplatsen"],
+      "lank": "https://biblioteket.stockholm.se/sok?freetext=Null%20States%20Older"
+    },
+    {
+      "titel": "Children of Ruin",
+      "forfattare": "Adrian Tchaikovsky",
+      "isbn": "9781509865871",
+      "filialer": ["Medborgarplatsen", "Stadsbiblioteket"],
+      "lank": "https://biblioteket.stockholm.se/sok?freetext=Children%20of%20Ruin%20Tchaikovsky"
+    },
+    {
+      "titel": "Schismatrix Plus",
+      "forfattare": "Bruce Sterling",
+      "isbn": "9780441003709",
+      "filialer": ["Bagarmossen"],
+      "lank": "https://biblioteket.stockholm.se/sok?freetext=Schismatrix%20Sterling"
+    }
+  ]
+}
