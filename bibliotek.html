@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Att låna nu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#181a2c; --paper:#fbfaf6; --panel:#ffffff; --text:#26262c;
+    --muted:#73727c; --faint:#9a99a2; --rule:#e8e4db;
+    --brass:#b0843f; --brass-soft:#f3ead7; --green:#3f8a5f; --green-soft:#e6f1ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:radial-gradient(1200px 500px at 50% -200px,#20233c 0%,var(--ink) 55%) no-repeat,var(--ink);
+    color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.5;
+    padding:34px 16px 60px;min-height:100vh;
+  }
+  .wrap{max-width:600px;margin:0 auto}
+  .pagehead{text-align:center;margin-bottom:22px}
+  .pagehead .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#b9bad0}
+  .pagehead h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:24px;color:#fff;margin-top:6px;letter-spacing:-.01em}
+
+  .branch{background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;margin-bottom:14px;box-shadow:0 18px 44px -26px rgba(8,9,22,.7)}
+  .branch-head{display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid var(--rule);background:linear-gradient(180deg,#fff,var(--paper))}
+  .pin{flex:none;width:18px;height:18px;color:var(--brass)}
+  .branch-name{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:17px;color:var(--ink)}
+  .count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);background:var(--green-soft);padding:3px 9px;border-radius:999px;font-weight:600}
+
+  .book{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit;transition:background .12s ease}
+  .book:last-child{border-bottom:none}
+  .book:hover{background:#faf7f0}
+  .book .meta{min-width:0}
+  .book .titel{font-weight:600;font-size:14.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .book .forf{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .book .go{margin-left:auto;flex:none;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--brass);white-space:nowrap}
+  .book .go svg{width:14px;height:14px}
+
+  .foot{text-align:center;margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9698b6;line-height:1.7}
+
+  .state{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:30px 26px;text-align:center;color:var(--muted)}
+  .state h3{font-family:'Fraunces',Georgia,serif;color:var(--ink);font-weight:600;font-size:20px;margin-bottom:8px}
+  .state code{font-family:'JetBrains Mono',monospace;font-size:12px;background:#f0ede5;padding:2px 6px;border-radius:5px}
+  .spinner{width:26px;height:26px;border:3px solid var(--rule);border-top-color:var(--brass);border-radius:50%;margin:0 auto 14px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.spinner{animation:none}}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pagehead">
+    <div class="eyebrow">Stockholms stadsbibliotek</div>
+    <h1>Att låna nu</h1>
+  </div>
+
+  <div id="loading" class="state">
+    <div class="spinner"></div>
+    Hämtar tillgängliga böcker…
+  </div>
+
+  <div id="list"></div>
+
+  <div id="empty" class="state hidden">
+    <h3>Inget inne just nu</h3>
+    <div>Ingen bok från din to-read står inne på dina filialer – eller så har <code>bibliotek.json</code> inte skapats än.</div>
+  </div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+  // Föredragen ordning på filialer (närmast city först). Övriga hamnar sist.
+  var ORDNING = ["Stadsbiblioteket", "Medborgarplatsen", "Björkhagen", "Bagarmossen"];
+
+  function el(id){ return document.getElementById(id); }
+  function show(id){ el(id).classList.remove('hidden'); }
+  function hide(id){ el(id).classList.add('hidden'); }
+
+  var PIN = '<svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  function rank(namn){
+    for(var i=0;i<ORDNING.length;i++){ if(namn.indexOf(ORDNING[i])!==-1) return i; }
+    return ORDNING.length + 1;
+  }
+
+  function render(data){
+    var bocker = (data && data.tillgangliga) || [];
+    if(bocker.length === 0){ hide('loading'); show('empty'); el('foot').textContent = data && data.uppdaterad ? ('Kontrollerad ' + data.uppdaterad) : ''; return; }
+
+    // gruppera per filial
+    var grupper = {};
+    bocker.forEach(function(b){
+      (b.filialer || []).forEach(function(f){
+        if(!grupper[f]) grupper[f] = [];
+        grupper[f].push(b);
+      });
+    });
+
+    var filialer = Object.keys(grupper).sort(function(a,b){ return rank(a) - rank(b) || a.localeCompare(b,'sv'); });
+
+    var listBox = el('list');
+    filialer.forEach(function(f){
+      var card = document.createElement('div'); card.className='branch';
+
+      var head = document.createElement('div'); head.className='branch-head';
+      head.innerHTML = PIN + '<span class="branch-name"></span><span class="count"></span>';
+      head.querySelector('.branch-name').textContent = f;
+      head.querySelector('.count').textContent = grupper[f].length + ' st';
+      card.appendChild(head);
+
+      grupper[f].forEach(function(b){
+        var a = document.createElement('a');
+        a.className = 'book';
+        a.href = b.lank || '#'; a.target = '_blank'; a.rel = 'noopener';
+        a.innerHTML =
+          '<div class="meta"><div class="titel"></div><div class="forf"></div></div>' +
+          '<span class="go">Reservera ' + ARROW + '</span>';
+        a.querySelector('.titel').textContent = b.titel || 'Okänd titel';
+        a.querySelector('.forf').textContent = b.forfattare || '';
+        card.appendChild(a);
+      });
+
+      listBox.appendChild(card);
+    });
+
+    el('foot').textContent =
+      (data.uppdaterad ? 'Kontrollerad ' + data.uppdaterad + ' · ' : '') +
+      bocker.length + ' titlar inne nu';
+
+    hide('loading');
+  }
+
+  fetch('bibliotek.json?_=' + Date.now(), { cache: 'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+    .then(render)
+    .catch(function(){ hide('loading'); show('empty'); });
+</script>
+</body>
+</html>
