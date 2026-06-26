@@ -6,7 +6,7 @@
 #   3. Klicka Save
 #
 # Kör därefter manuellt via: Actions → Biblioteksspanaren → Run workflow
-# Schemalagd körning sker automatiskt varje måndag kl 09:00 svensk tid.
+# Schemalagd körning sker första fredagen i månaden kl 14:00 svensk tid.
 #
 # Data (cursor.json, bibliotek.json, scripts/) lever på grenen claude/boktips.
 
@@ -14,14 +14,36 @@ name: Biblioteksspanaren
 
 on:
   schedule:
-    - cron: '0 7 * * 1'   # Måndag 07:00 UTC = 09:00 CEST / 08:00 CET
+    # Varje fredag 12:00 UTC = 14:00 CEST / 13:00 CET.
+    # Steget "Kontrollera första fredagen" hoppar över övriga fredagar.
+    - cron: '0 12 * * 5'
   workflow_dispatch:        # Tillåt manuell körning från GitHub UI
 
 permissions:
   contents: write           # Krävs för att committa och pusha tillbaka
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      kör: ${{ steps.check.outputs.kör }}
+    steps:
+      - name: Kontrollera första fredagen i månaden
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "kör=true" >> $GITHUB_OUTPUT
+          elif [ "$(date -u +%d)" -le 7 ]; then
+            echo "Dag $(date -u +%d) – första fredagen. Kör."
+            echo "kör=true" >> $GITHUB_OUTPUT
+          else
+            echo "Dag $(date -u +%d) – inte första fredagen. Hoppar över."
+            echo "kör=false" >> $GITHUB_OUTPUT
+          fi
+
   spana:
+    needs: check
+    if: needs.check.outputs.kör == 'true'
     runs-on: ubuntu-latest
 
     steps:
